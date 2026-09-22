@@ -4,11 +4,16 @@ import json
 from typing import List
 from pydantic import BaseModel, Field
 import concurrent.futures
-from dotenv import load_dotenv
-from litellm import completion
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-# Load environment variables from the .env file
-load_dotenv()
+try:
+    from litellm import completion
+except ImportError:
+    completion = None
 
 # ==========================================
 # 1. DEFINE DATA STRUCTURES (PYDANTIC)
